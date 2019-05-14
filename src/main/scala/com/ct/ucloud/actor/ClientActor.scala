@@ -5,6 +5,7 @@ import com.ct.ucloud._
 import scala.concurrent.duration._
 
 class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
+
   override def receive: Receive = {
     case env: UCloudConfig =>
       FileManager init(env.REST_HOST, env.REST_PORT.toInt, conf.LOCAL_DIR)
@@ -14,6 +15,7 @@ class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
 
     case job: RunJob => runJob(job.deviceId, job.args: _*)
   }
+
   override def preStart() = server ! GetEnv
 
   private val _deviceManager = new DeviceManager(conf.DEVICE_CONFIG_FILE)

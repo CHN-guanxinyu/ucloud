@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <device-list>
     <device>
-        <name>123</name>
-        <desc>123</desc>
+        <name>惠普打印机</name>
+        <desc>惠普打印机-HP R320</desc>
+        <type>打印机</type>
         <driver>com.ct.ucloud.driver.Printer</driver>
     </device>
 </device-list>

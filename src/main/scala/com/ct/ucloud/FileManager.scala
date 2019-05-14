@@ -10,6 +10,9 @@ import akka.stream.ActorMaterializer
 import akka.stream.scaladsl.FileIO
 import com.ct.ucloud.util.FileUtil
 
+import scala.concurrent.Await
+import scala.concurrent.duration.Duration
+
 object FileManager {
   implicit lazy val sys = ActorSystem("UCloud")
   implicit lazy val mat = ActorMaterializer()
@@ -27,18 +30,19 @@ object FileManager {
 
   private lazy val fileApi = s"http://${_host}:${_port}/file"
 
-  def download(path: String, temp: Boolean = true)(f: File => Unit) = Http(sys) singleRequest
-    HttpRequest(uri = s"$fileApi/$path") onSuccess {
+  def download(path: String, temp: Boolean = true)(f: File => String): String =
+    Await.result(Http(sys) singleRequest HttpRequest(uri = s"$fileApi/$path"), Duration.Inf) match {
       case HttpResponse(StatusCodes.OK, _, entity, _) =>
         val localPath = _localDir + "/" + path
-        entity.dataBytes.runWith(FileIO toPath Paths.get(localPath)).onSuccess { case _ =>
-          val file = new File(localPath)
-          f(file)
-          if (temp) file.delete
-        }
+        Await.result(entity.dataBytes.runWith(FileIO toPath Paths.get(localPath)), Duration.Inf)
+        val file = new File(localPath)
+        val result = f(file)
+        if (temp) file.delete
+        result
       case HttpResponse(StatusCodes.NotFound, _, _, _) =>
         f(null)
     }
+
 
   def upload(path: String) = Http(sys) singleRequest HttpRequest(
     HttpMethods.POST,

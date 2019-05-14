@@ -32,5 +32,5 @@ class ServerActor(val conf: UCloudConfig) extends CommonActor(conf) {
       Map("id" -> id.id.toString, "name" -> name)
     }.toJson
 
-  def runJob(clientId: Long, deviceId: Long, args: String*) = _clientManager.runJob(clientId, deviceId, args: _*)
+  def runJob(clientId: Long, deviceId: Long, args: String*): String = _clientManager.runJob(clientId, deviceId, args: _*)
 }

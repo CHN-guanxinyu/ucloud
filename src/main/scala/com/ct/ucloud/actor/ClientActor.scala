@@ -31,6 +31,6 @@ class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
   private def register = server ! Register(Client(conf.UCLOUD_NAME, _deviceManager.devices))
 
   private def runJob(deviceId: DeviceId, args: String*) =
-    _deviceManager.runJob(deviceId, args: _*)
+    sender ! _deviceManager.runJob(deviceId, args: _*)
 
 }

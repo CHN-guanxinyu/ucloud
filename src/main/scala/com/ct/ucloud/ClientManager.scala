@@ -6,11 +6,13 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 
 import akka.actor.{ActorRef, Scheduler}
+import akka.pattern.ask
+import akka.util.Timeout
 import com.ct.ucloud.actor.RunJob
 
 import scala.collection.JavaConversions._
-import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
+import scala.concurrent.{Await, ExecutionContext}
 case class ClientId(id: Long) extends Serializable {
   override def toString: String = s"[client-$id]"
 }
@@ -47,8 +49,11 @@ class ClientManager(debug: Boolean = false)(implicit scheduler: Scheduler, ec: E
 
   def listDevices(clientId: ClientId) = _clientWithId get clientId devices
 
-  def runJob(clientId: Long, deviceId: Long, args: String*) =
-    (_clientWithId get ClientId(clientId) ref) ! RunJob(DeviceId(deviceId), args: _*)
+  def runJob(clientId: Long, deviceId: Long, args: String*) = {
+    implicit val timeout = new Timeout(10 seconds)
+    val future = (_clientWithId get ClientId(clientId) ref) ? RunJob(DeviceId(deviceId), args: _*)
+    Await.result(future, Duration.Inf).asInstanceOf[String]
+  }
 
   private def expired(clientId: ClientId) =
     !(_heartBeat containsKey clientId) && !(_heartBeatBreak containsKey clientId)

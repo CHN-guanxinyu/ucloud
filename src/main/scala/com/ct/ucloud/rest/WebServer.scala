@@ -43,7 +43,7 @@ object WebServer {
         } ~
         pathPrefix("runJob" / LongNumber / LongNumber) { (client, device) =>
           parameter("args") { args =>
-            response("" + server.runJob(client, device, args.fromJson.children.map(_.values.toString) : _*))
+            response(server.runJob(client, device, args.fromJson.children.map(_.values.toString) : _*))
           }
         } ~
         pathPrefix("file" / Remaining) { path =>

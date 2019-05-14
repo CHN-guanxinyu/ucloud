@@ -78,10 +78,10 @@ class ClientManager(debug: Boolean = false)(implicit scheduler: Scheduler, ec: E
     logDebug(
       s"""|===================================================
           |curTime -> ${format(curTime)}
-          |_printerEndpoint -> ${_clientWithId}
-          |_printerDeadList -> ${_clientDeadList}
-          |_heartBeatInfo -> ${_heartBeat.mapValues(format)}
-          |_printerMaybeDead -> ${_heartBeatBreak.mapValues(format)}
+          |_clientWithId -> ${_clientWithId}
+          |_clientDeadList -> ${_clientDeadList}
+          |_heartBeat -> ${_heartBeat.mapValues(format)}
+          |_heartBeatBreak -> ${_heartBeatBreak.mapValues(format)}
           """.stripMargin)
     _heartBeat.foreach { case (id, lastTime) => if (curTime - lastTime > 3000) {
       logDebug(s"$id 短时间超时，加入低级队列")

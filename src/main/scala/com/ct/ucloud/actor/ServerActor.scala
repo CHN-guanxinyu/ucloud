@@ -28,7 +28,7 @@ class ServerActor(val conf: UCloudConfig) extends CommonActor(conf) {
      _clientManager.listClients.toJson
 
   def listDevices(clientId: ClientId) =
-    _clientManager.listDevices(clientId).map{ case Device(id, name, _, _) =>
+    _clientManager.listDevices(clientId).map{ case Device(id, name, _, _, _) =>
       Map("id" -> id.id.toString, "name" -> name)
     }.toJson
 

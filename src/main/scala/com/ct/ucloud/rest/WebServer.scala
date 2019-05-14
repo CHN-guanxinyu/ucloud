@@ -1,6 +1,7 @@
 package com.ct.ucloud.rest
 
 import java.io.File
+import java.net.URLDecoder
 import java.nio.file.Paths
 
 import akka.actor.ActorSystem
@@ -43,7 +44,7 @@ object WebServer {
         } ~
         pathPrefix("runJob" / LongNumber / LongNumber) { (client, device) =>
           parameter("args") { args =>
-            response(server.runJob(client, device, args.fromJson.children.map(_.values.toString) : _*))
+            response(server.runJob(client, device, URLDecoder.decode(args).fromJson.children.map(_.values.toString) : _*))
           }
         } ~
         pathPrefix("file" / Remaining) { path =>

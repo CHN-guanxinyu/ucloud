@@ -21,7 +21,10 @@ class DeviceManager(configPath: String) {
 
   def devices = _devices.values.toList
 
-  def runJob(id: DeviceId, args: String*) = {
+  def runJob(id: DeviceId, args: String*) = try{
     _devices(id).driver.as[DeviceDriver].runJob(args: _*)
+  } catch {
+    case e => e.printStackTrace
+      e.toString
   }
 }

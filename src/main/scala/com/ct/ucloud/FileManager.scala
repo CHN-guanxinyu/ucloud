@@ -33,7 +33,7 @@ object FileManager {
   def download(path: String, temp: Boolean = true)(f: File => String): String =
     Await.result(Http(sys) singleRequest HttpRequest(uri = s"$fileApi/$path"), Duration.Inf) match {
       case HttpResponse(StatusCodes.OK, _, entity, _) =>
-        val localPath = _localDir + "/" + path
+        val localPath = _localDir + "/" + path.split("/").last
         Await.result(entity.dataBytes.runWith(FileIO toPath Paths.get(localPath)), Duration.Inf)
         val file = new File(localPath)
         val result = f(file)

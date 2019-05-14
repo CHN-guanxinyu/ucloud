@@ -44,7 +44,10 @@ class ClientManager(debug: Boolean = false)(implicit scheduler: Scheduler, ec: E
   }
 
   def listClients = _clientWithId.map{ case (ClientId(id), client: Client) =>
-    id -> client.name
+    Map(
+      "id" -> id,
+      "name" -> client.name
+    )
   }
 
   def listDevices(clientId: ClientId) = _clientWithId get clientId devices

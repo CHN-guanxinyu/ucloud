@@ -1,5 +1,5 @@
 package com.ct.ucloud
 
-trait DeviceDriver {
+trait JobDriver {
   @throws[Exception] def runJob(args: String*): String
 }

@@ -17,7 +17,7 @@ import ch.megard.akka.http.cors.scaladsl.settings.CorsSettings
 import com.ct.ucloud.ClientId
 import com.ct.ucloud.actor.ServerActor
 import com.ct.ucloud.util.FileUtil
-import com.keene.core.implicits._
+import io.github.tobetwo.implicits._
 
 import scala.concurrent.duration._
 

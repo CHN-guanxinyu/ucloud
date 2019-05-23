@@ -4,9 +4,9 @@ import akka.actor.{ActorSystem, Props}
 import akka.pattern.ask
 import akka.util.Timeout
 import com.ct.ucloud.actor.{Close, CommonActor}
-import com.keene.core.implicits._
-import com.keene.core.parsers.Arguments
 import com.typesafe.config.ConfigFactory
+import io.github.tobetwo.implicits._
+import io.github.tobetwo.parser.Arguments
 
 import scala.concurrent.duration._
 

@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  val core = Seq(Lib.commons, Lib.json4s)
+  val core = Seq(Lib.commons, Lib.json4s, Lib.scala_zoom)
 }
 
 object Version{
@@ -13,6 +13,7 @@ object Version{
   val scala = "2.11.8"
   val scala_xml = "1.2.0"
   val json4s = "3.6.5"
+  val scala_zoom = "1.0.0-SNAPSHOT"
 
 }
 
@@ -30,4 +31,5 @@ object Lib{
   val scala_xml         = "org.scala-lang.modules"      %% "scala-xml"                  % Version.scala_xml
   val json4s            = "org.json4s"                  %% "json4s-native"              % Version.json4s
   val commons           = "commons-configuration"       % "commons-configuration"       % Version.commons
+  val scala_zoom        = "io.github.tobetwo"           % "scala-zoom"                  % Version.scala_zoom
 }

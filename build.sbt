@@ -14,8 +14,8 @@ def preownedKittenProject(
 ) : Project = {
   Project(name, file(path)).
     settings(
-      version := "1.0-SNAPSHOT",
-      organization := "com.ct",
+      version := "1.0.0-SNAPSHOT",
+      organization := "io.github.tobetwo",
       scalaVersion := Version.scala
     )
 }

@@ -1,6 +1,6 @@
 package com.ct.ucloud
 
-import com.keene.core.implicits._
+import io.github.tobetwo.implicits._
 
 import scala.util.Random
 import scala.xml.{NodeSeq, XML}

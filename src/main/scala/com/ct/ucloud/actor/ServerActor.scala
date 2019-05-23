@@ -1,7 +1,12 @@
 package com.ct.ucloud.actor
 import com.ct.ucloud._
 import com.ct.ucloud.rest.WebServer
-import com.keene.core.implicits._
+import io.github.tobetwo.implicits._
+
+/**
+  *
+  * @param conf
+  */
 class ServerActor(val conf: UCloudConfig) extends CommonActor(conf) {
   override def receive: Receive = {
     case Register(client) => processRegister(client)
@@ -9,16 +14,29 @@ class ServerActor(val conf: UCloudConfig) extends CommonActor(conf) {
     case GetEnv => sender ! conf
   }
 
-  WebServer.start(this)
+  /**
+    *
+    */
+  WebServer start this
+  /**
+    *
+    */
+  private val _clientManager = new ClientManager(debug = false)
 
-  private val _clientManager = new ClientManager(debug = true)
-
+  /**
+    *
+    * @param client
+    */
   private def processRegister(client: Client): Unit = {
     log info "register"
     client.ref = sender
     sender ! RegisterResp(_clientManager register client)
   }
 
+  /**
+    *
+    * @param id
+    */
   private def processHeartBeat(id: ClientId) = {
     log info s"recieved heartbeat from $id"
     if(!_clientManager.heartBeat(id))

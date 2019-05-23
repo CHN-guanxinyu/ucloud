@@ -23,7 +23,7 @@ class JobManager(configPath: String) {
     id -> Job(id, job \ "name", job \ "desc", job \ "type", job \ "driver")
   } toMap
 
-  def devices = _jobs.values.toList
+  def jobs = _jobs.values.toList
 
   def runJob(id: JobId, args: String*) = try {
     _jobs(id).driver.as[JobDriver].runJob(args: _*)

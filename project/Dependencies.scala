@@ -1,7 +1,7 @@
 import sbt._
 
 object Dependencies {
-  val core = Seq(Lib.commons, Lib.json4s, Lib.scala_zoom)
+  val core = Seq(Lib.commons, Lib.json4s, Lib.scala_zoom, Lib.scala_xml)
 }
 
 object Version{
@@ -19,7 +19,8 @@ object Version{
 
 object Lib{
   object akka{
-    val http            = "com.typesafe.akka"           %% "akka-http"                  % Version.akka_http
+    val http = "com.typesafe.akka" %% "akka-http" % Version.akka_http exclude
+      ("com.typesafe.akka", "akka-stream_2.11") exclude("com.typesafe.akka", "akka-actor_2.11")
     val http_spray_json = "com.typesafe.akka"           %% "akka-http-spray-json"       % Version.akka_http
     val http_xml        = "com.typesafe.akka"           %% "akka-http-xml"              % Version.akka_http
     val stream          = "com.typesafe.akka"           %% "akka-stream"                % Version.akka

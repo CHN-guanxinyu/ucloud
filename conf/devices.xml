@@ -4,6 +4,6 @@
         <name>惠普打印机</name>
         <desc>惠普打印机-HP R320</desc>
         <type>打印机</type>
-        <driver>com.ct.ucloud.driver.Printer</driver>
+        <driver>io.github.tobetwo.ucloud.driver.Printer</driver>
     </device>
 </device-list>

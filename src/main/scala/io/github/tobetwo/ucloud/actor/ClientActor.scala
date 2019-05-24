@@ -25,7 +25,7 @@ class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
   /**
     *
     */
-  private val _jobManager = new JobManager(conf.DEVICE_CONFIG_FILE)
+  private val _jobManager = new JobManager(conf.JOB_CONFIG_FILE)
   /**
     *
     */

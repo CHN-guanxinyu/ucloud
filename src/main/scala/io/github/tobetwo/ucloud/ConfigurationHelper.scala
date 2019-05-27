@@ -31,7 +31,7 @@ class UCloudConfig(@transient config: PropertiesConfiguration) extends Serializa
   val UCLOUD_HOST = local ~ ("host", "localhost")
   val UCLOUD_PORT = local ~ ("port", "0")
   val UCLOUD_NAME = local ~ "name"
-  val DEVICE_CONFIG_FILE = local ~ ("device.config", "")
+  val JOB_CONFIG_FILE = local ~ ("job.config", "")
 
   val UCLOUD_SERVER_HOST = server ~ "host"
   val UCLOUD_SERVER_PORT = server ~ "port"

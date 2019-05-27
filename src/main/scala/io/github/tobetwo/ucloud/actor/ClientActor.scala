@@ -25,7 +25,7 @@ class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
   /**
     *
     */
-  private val _jobManager = new JobManager(conf.DEVICE_CONFIG_FILE)
+  private val _jobManager = new JobManager(conf.JOB_CONFIG_FILE)
   /**
     *
     */
@@ -42,7 +42,7 @@ class ClientActor(conf: UCloudConfig) extends CommonActor(conf) {
     _myid = myid
   }
 
-  private def register = server ! Register(Client(conf.UCLOUD_NAME, _jobManager.devices))
+  private def register = server ! Register(Client(conf.UCLOUD_NAME, _jobManager.jobs))
 
   private def runJob(jobId: JobId, args: String*) =
     sender ! _jobManager.runJob(jobId, args: _*)

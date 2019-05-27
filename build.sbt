@@ -22,7 +22,7 @@ crossPaths := false
 
 publishArtifact in Test := false
 
-pomIncludeRepository := { _ ⇒
+pomIncludeRepository := { _ =>
   false
 }
 
@@ -49,4 +49,3 @@ pomExtra in Global := {
 
 libraryDependencies ++= Dependencies.core
 libraryDependencies ++= Lib.akka.all
-libraryDependencies += Lib.scala_xml

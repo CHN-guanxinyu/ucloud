@@ -1,10 +1,10 @@
 name := "ucloud"
 
-version := "1.0.1-SNAPSHOT"
+version := "1.0.1"
 
 organization := "io.github.tobetwo"
 
-scalaVersion := "2.11.8"
+scalaVersion := Version.scala
 
 publishMavenStyle := true
 
@@ -32,6 +32,7 @@ pomExtra in Global := {
       <license>
         <name>MIT</name>
         <url>https://opensource.org/licenses/MIT</url>
+        <distribution>repo</distribution>
       </license>
     </licenses>
     <scm>

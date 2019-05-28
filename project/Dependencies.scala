@@ -13,7 +13,7 @@ object Version{
   val scala = "2.11.8"
   val scala_xml = "1.2.0"
   val json4s = "3.6.5"
-  val scala_zoom = "1.0.1-SNAPSHOT"
+  val scala_zoom = "1.0.1"
 
 }
 

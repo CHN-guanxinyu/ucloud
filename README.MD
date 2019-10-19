@@ -3,7 +3,7 @@ Simple network framework based on Akka.
 ## Usage
 ##### 1. add dependency
 ```
-libraryDependencies += "io.github.tobetwo" % "ucloud" % "1.0.1-SNAPSHOT"
+libraryDependencies += "io.github.tobetwo" % "ucloud" % "1.0.1"
 ```
 ##### 2. implements `JobDriver`
 ```
